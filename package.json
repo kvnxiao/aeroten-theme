@@ -1,0 +1,13 @@
+{
+  "name": "windows-10-metacity",
+  "version": "1.0.0",
+  "description": "Windows 10 style window borders for WMs that support metacity",
+  "author": "Ze Hao (Kevin) Xiao",
+  "license": "MIT",
+  "private": false,
+  "dependencies": {
+    "pug-cli": "^1.0.0-alpha6",
+    "xml2jade2": "^0.0.2",
+    "xmlpug": "^3.0.0"
+  }
+}

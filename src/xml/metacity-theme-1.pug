@@ -1,0 +1,313 @@
+metacity_theme
+    info
+        name Aeroten
+        author Ze Hao (Kevin) Xiao
+        copyright 2017 Ze Hao Xiao
+        date Nov 16, 2017
+        description Windows 10 style window borders for WMs that support metacity
+
+    // CONSTANTS
+
+    // Caption button colours
+    constant(name="BUTTON_UNFOCUSED", value="#ffffff")
+    constant(name="BUTTON_UNFOCUSED_HOVER", value="#000000")
+    constant(name="BUTTON_UNFOCUSED_HOVER_ALPHA", value="0.15")
+    constant(name="BUTTON_UNFOCUSED_PRESSED_ALPHA", value="0.27")
+    constant(name="BUTTON_FOCUSED_HOVER", value="#fefefe")
+    constant(name="BUTTON_FOCUSED_HOVER_ALPHA", value="0.15")
+    constant(name="BUTTON_FOCUSED_PRESSED", value="#fafaf5")
+    constant(name="BUTTON_FOCUSED_PRESSED_ALPHA", value="0.29")
+    // Close button colours
+    constant(name="BUTTON_RED_HOVER", value="#e81123")
+    constant(name="BUTTON_RED_PRESSED", value="#e71022")
+    constant(name="BUTTON_RED_PRESSED_ALPHA", value="0.67")
+    // Title text colours
+    constant(name="TITLE_TEXT_UNFOCUSED", value="#cccccc")
+    constant(name="TITLE_TEXT_FOCUSED", value="#ffffff")
+    // Accent colours
+    constant(name="ACCENT_FOCUSED_BG", value="#68768a")
+    constant(name="ACCENT_FOCUSED_EDGE", value="#748193")
+    constant(name="ACCENT_UNFOCUSED_BG", value="#ffffff")
+    constant(name="ACCENT_UNFOCUSED_EDGE", value="#cbccd0")
+    // Icon title spacing
+    constant(name="IconTitleSpacing", value="0")
+
+    // BEGIN FRAME GEOMETRY
+
+    frame_geometry(name="normal", rounded_top_left="false", title_scale="medium")
+        distance(name="left_width", value="1")
+        distance(name="right_width", value="1")
+        distance(name="bottom_height", value="1")
+        distance(name="left_titlebar_edge", value="1")
+        distance(name="right_titlebar_edge", value="1")
+        distance(name="button_width", value="45")
+        distance(name="button_height", value="29")
+        distance(name="title_vertical_pad", value="0")
+        border(name="title_border", left="0", right="0", top="0", bottom="0")
+        border(name="button_border", left="1", right="0", top="1", bottom="1")
+
+    frame_geometry(name="maximized", rounded_top_left="false", title_scale="medium")
+        distance(name="left_width", value="0")
+        distance(name="right_width", value="0")
+        distance(name="bottom_height", value="0")
+        distance(name="left_titlebar_edge", value="2")
+        distance(name="right_titlebar_edge", value="2")
+        distance(name="button_width", value="45")
+        distance(name="button_height", value="21")
+        distance(name="title_vertical_pad", value="0")
+        border(name="title_border", left="0", right="0", top="0", bottom="0")
+        border(name="button_border", left="1", right="0", top="0", bottom="2")
+
+    // END FRAME GEOMETRY
+
+    // BEGIN DRAWOPS
+
+    draw_ops(name="title-text-focused")
+        title(color="TITLE_TEXT_FOCUSED", x="(0 `max` ((width - title_width) / 2)) + 2", y="(0 `max` ((height - title_height) / 2))")
+
+    draw_ops(name="title-text-unfocused")
+        title(color="TITLE_TEXT_UNFOCUSED", x="(0 `max` ((width - title_width) / 2)) + 2", y="(0 `max` ((height - title_height) / 2))")
+
+    draw_ops(name="title-bar")
+        rectangle(color="ACCENT_FOCUSED_BG", x="0", y="0", width="width", height="height", filled="true")
+        line(color="ACCENT_FOCUSED_EDGE", x1="0", y1="0", x2="0", y2="height", width="1")
+        line(color="ACCENT_FOCUSED_EDGE", x1="0", y1="0", x2="width", y2="0", width="1")
+        line(color="ACCENT_FOCUSED_EDGE", x1="width - 1", y1="0", x2="width - 1", y2="height", width="1")
+
+    draw_ops(name="title-bar-unfocused")
+        rectangle(color="ACCENT_UNFOCUSED_BG", x="0", y="0", width="width", height="height", filled="true")
+        line(color="ACCENT_UNFOCUSED_EDGE", x1="0", y1="0", x2="0", y2="height", width="1")
+        line(color="ACCENT_UNFOCUSED_EDGE", x1="0", y1="0", x2="width", y2="0", width="1")
+        line(color="ACCENT_UNFOCUSED_EDGE", x1="width - 1", y1="0", x2="width - 1", y2="height", width="1")
+
+    draw_ops(name="title-bar-max")
+        rectangle(color="ACCENT_FOCUSED_BG", x="0", y="0", width="width", height="height", filled="true")
+
+    draw_ops(name="title-bar-max-unfocused")
+        rectangle(color="ACCENT_UNFOCUSED_BG", x="0", y="0", width="width", height="height", filled="true")
+
+    draw_ops(name="frame-left-focused")
+        rectangle(color="ACCENT_FOCUSED_EDGE", x="0", y="0", width="width", height="height", filled="true")
+    draw_ops(name="frame-left-unfocused")
+        rectangle(color="ACCENT_UNFOCUSED_EDGE", x="0", y="0", width="width", height="height", filled="true")
+
+    draw_ops(name="frame-right-focused")
+        rectangle(color="ACCENT_FOCUSED_EDGE", x="0", y="0", width="width", height="height", filled="true")
+    draw_ops(name="frame-right-unfocused")
+        rectangle(color="ACCENT_UNFOCUSED_EDGE", x="0", y="0", width="width", height="height", filled="true")
+
+    draw_ops(name="frame-bottom-focused")
+        rectangle(color="ACCENT_FOCUSED_EDGE", x="0", y="0", width="width", height="height", filled="true")
+    draw_ops(name="frame-bottom-unfocused")
+        rectangle(color="ACCENT_UNFOCUSED_EDGE", x="0", y="0", width="width", height="height", filled="true")
+
+    // Close button
+    draw_ops(name="button-close-focused")
+        image(filename="close_white.png", x="0", y="0", width="object_width", height="object_height")
+    draw_ops(name="button-close-unfocused")
+        image(filename="close_grey.png", x="0", y="0", width="object_width", height="object_height")
+    draw_ops(name="button-close-hover")
+        rectangle(color="BUTTON_RED_HOVER", x="0", y="0", width="width", height="height", filled="true")
+        image(filename="close_white.png", x="0", y="0", width="object_width", height="object_height")
+    draw_ops(name="button-close-pressed")
+        tint(color="BUTTON_RED_PRESSED", alpha="0.67", x="0", y="0", width="width", height="height")
+        image(filename="close_white.png", x="0", y="0", width="object_width", height="object_height")
+
+    // Close button (maximized)
+    draw_ops(name="button-max-close-focused")
+        image(filename="close_white_maxed.png", x="0", y="0", width="object_width", height="object_height")
+    draw_ops(name="button-max-close-unfocused")
+        image(filename="close_grey_maxed.png", x="0", y="0", width="object_width", height="object_height")
+    draw_ops(name="button-max-close-hover")
+        rectangle(color="BUTTON_RED_HOVER", x="0", y="0", width="width", height="height", filled="true")
+        image(filename="close_white_maxed.png", x="0", y="0", width="object_width", height="object_height")
+    draw_ops(name="button-max-close-pressed")
+        tint(color="BUTTON_RED_PRESSED", alpha="0.67", x="0", y="0", width="width", height="height")
+        image(filename="close_white_maxed.png", x="0", y="0", width="object_width", height="object_height")
+
+    // Maximize button
+    draw_ops(name="button-maximize-unfocused")
+        image(filename="maximize_grey.png", x="0", y="0", width="object_width", height="object_height")
+    draw_ops(name="button-maximize-unfocused-hover")
+        tint(color="BUTTON_UNFOCUSED_HOVER", alpha="0.15", x="0", y="0", width="width", height="height")
+        image(filename="maximize_black.png", x="0", y="0", width="object_width", height="object_height")
+    draw_ops(name="button-maximize-unfocused-pressed")
+        tint(color="BUTTON_UNFOCUSED_HOVER", alpha="0.27", x="0", y="0", width="width", height="height")
+        image(filename="maximize_black.png", x="0", y="0", width="object_width", height="object_height")
+    draw_ops(name="button-maximize-focused")
+        image(filename="maximize_white.png", x="0", y="0", width="object_width", height="object_height")
+    draw_ops(name="button-maximize-focused-hover")
+        tint(color="BUTTON_FOCUSED_HOVER", alpha="0.15", x="0", y="0", width="width", height="height")
+        image(filename="maximize_white.png", x="0", y="0", width="object_width", height="object_height")
+    draw_ops(name="button-maximize-focused-pressed")
+        tint(color="BUTTON_FOCUSED_PRESSED", alpha="0.29", x="0", y="0", width="width", height="height")
+        image(filename="maximize_white.png", x="0", y="0", width="object_width", height="object_height")
+
+    // Restore button (maximized)
+    draw_ops(name="button-restore-unfocused")
+        image(filename="restore_grey_maxed.png", x="0", y="0", width="object_width", height="object_height")
+    draw_ops(name="button-restore-unfocused-hover")
+        tint(color="BUTTON_UNFOCUSED_HOVER", alpha="0.15", x="0", y="0", width="width", height="height")
+        image(filename="restore_black_maxed.png", x="0", y="0", width="object_width", height="object_height")
+    draw_ops(name="button-restore-unfocused-pressed")
+        tint(color="BUTTON_UNFOCUSED_HOVER", alpha="0.27", x="0", y="0", width="width", height="height")
+        image(filename="restore_black_maxed.png", x="0", y="0", width="object_width", height="object_height")
+    draw_ops(name="button-restore-focused")
+        image(filename="restore_white_maxed.png", x="0", y="0", width="object_width", height="object_height")
+    draw_ops(name="button-restore-focused-hover")
+        tint(color="BUTTON_FOCUSED_HOVER", alpha="0.15", x="0", y="0", width="width", height="height")
+        image(filename="restore_white_maxed.png", x="0", y="0", width="object_width", height="object_height")
+    draw_ops(name="button-restore-focused-pressed")
+        tint(color="BUTTON_FOCUSED_PRESSED", alpha="0.29", x="0", y="0", width="width", height="height")
+        image(filename="restore_white_maxed.png", x="0", y="0", width="object_width", height="object_height")
+
+    // Minimize button
+    draw_ops(name="button-minimize-unfocused")
+        image(filename="minimize_grey.png", x="0", y="0", width="object_width", height="object_height")
+    draw_ops(name="button-minimize-unfocused-hover")
+        tint(color="BUTTON_UNFOCUSED_HOVER", alpha="0.15", x="0", y="0", width="width", height="height")
+        image(filename="minimize_black.png", x="0", y="0", width="object_width", height="object_height")
+    draw_ops(name="button-minimize-unfocused-pressed")
+        tint(color="BUTTON_UNFOCUSED_HOVER", alpha="0.27", x="0", y="0", width="width", height="height")
+        image(filename="minimize_black.png", x="0", y="0", width="object_width", height="object_height")
+    draw_ops(name="button-minimize-focused")
+        image(filename="minimize_white.png", x="0", y="0", width="object_width", height="object_height")
+    draw_ops(name="button-minimize-focused-hover")
+        tint(color="BUTTON_FOCUSED_HOVER", alpha="0.15", x="0", y="0", width="width", height="height")
+        image(filename="minimize_white.png", x="0", y="0", width="object_width", height="object_height")
+    draw_ops(name="button-minimize-focused-pressed")
+        tint(color="BUTTON_FOCUSED_PRESSED", alpha="0.29", x="0", y="0", width="width", height="height")
+        image(filename="minimize_white.png", x="0", y="0", width="object_width", height="object_height")
+
+    // Minimize button (maximized)
+    draw_ops(name="button-max-minimize-unfocused")
+        image(filename="minimize_grey_maxed.png", x="0", y="0", width="object_width", height="object_height")
+    draw_ops(name="button-max-minimize-unfocused-hover")
+        tint(color="BUTTON_UNFOCUSED_HOVER", alpha="0.15", x="0", y="0", width="width", height="height")
+        image(filename="minimize_black_maxed.png", x="0", y="0", width="object_width", height="object_height")
+    draw_ops(name="button-max-minimize-unfocused-pressed")
+        tint(color="BUTTON_UNFOCUSED_HOVER", alpha="0.27", x="0", y="0", width="width", height="height")
+        image(filename="minimize_black_maxed.png", x="0", y="0", width="object_width", height="object_height")
+    draw_ops(name="button-max-minimize-focused")
+        image(filename="minimize_white_maxed.png", x="0", y="0", width="object_width", height="object_height")
+    draw_ops(name="button-max-minimize-focused-hover")
+        tint(color="BUTTON_FOCUSED_HOVER", alpha="0.15", x="0", y="0", width="width", height="height")
+        image(filename="minimize_white_maxed.png", x="0", y="0", width="object_width", height="object_height")
+    draw_ops(name="button-max-minimize-focused-pressed")
+        tint(color="BUTTON_FOCUSED_PRESSED", alpha="0.29", x="0", y="0", width="width", height="height")
+        image(filename="minimize_white_maxed.png", x="0", y="0", width="object_width", height="object_height")
+
+    // Application Icon
+    draw_ops(name="menu_button_draw")
+        rectangle(color="#ffffff", x="0", y="0", width="30", height="30", filled="true")
+    draw_ops(name="menu_button_normal")
+        icon(x="(width-mini_icon_width) / 2", y="(height-mini_icon_height) / 2", width="mini_icon_width", height="mini_icon_height")
+    draw_ops(name="menu_button_pressed")
+        icon(x="(width-mini_icon_width) / 2", y="(height-mini_icon_height) / 2", width="mini_icon_width", height="mini_icon_height")
+
+    // END DRAWOPS
+
+    // BEGIN FRAME STYLES
+
+    frame_style(name="normal-focused", geometry="normal")
+        piece(position="titlebar", draw_ops="title-bar")
+        piece(position="left_edge", draw_ops="frame-left-focused")
+        piece(position="right_edge", draw_ops="frame-right-focused")
+        piece(position="bottom_edge", draw_ops="frame-bottom-focused")
+        piece(position="title", draw_ops="title-text-focused")
+        button(function="close", state="normal", draw_ops="button-close-focused")
+        button(function="close", state="prelight", draw_ops="button-close-hover")
+        button(function="close", state="pressed", draw_ops="button-close-pressed")
+        button(function="minimize", state="normal", draw_ops="button-minimize-focused")
+        button(function="minimize", state="prelight", draw_ops="button-minimize-focused-hover")
+        button(function="minimize", state="pressed", draw_ops="button-minimize-focused-pressed")
+        button(function="maximize", state="normal", draw_ops="button-maximize-focused")
+        button(function="maximize", state="prelight", draw_ops="button-maximize-focused-hover")
+        button(function="maximize", state="pressed", draw_ops="button-maximize-focused-pressed")
+        button(function="menu", state="normal", draw_ops="menu_button_normal")
+        button(function="menu", state="pressed", draw_ops="menu_button_pressed")
+
+    frame_style(name="normal-unfocused", geometry="normal")
+        piece(position="titlebar", draw_ops="title-bar-unfocused")
+        piece(position="left_edge", draw_ops="frame-left-unfocused")
+        piece(position="right_edge", draw_ops="frame-right-unfocused")
+        piece(position="bottom_edge", draw_ops="frame-bottom-unfocused")
+        piece(position="title", draw_ops="title-text-unfocused")
+        button(function="close", state="normal", draw_ops="button-close-unfocused")
+        button(function="close", state="prelight", draw_ops="button-close-hover")
+        button(function="close", state="pressed", draw_ops="button-close-pressed")
+        button(function="minimize", state="normal", draw_ops="button-minimize-unfocused")
+        button(function="minimize", state="prelight", draw_ops="button-minimize-unfocused-hover")
+        button(function="minimize", state="pressed", draw_ops="button-minimize-unfocused-pressed")
+        button(function="maximize", state="normal", draw_ops="button-maximize-unfocused")
+        button(function="maximize", state="prelight", draw_ops="button-maximize-unfocused-hover")
+        button(function="maximize", state="pressed", draw_ops="button-maximize-unfocused-pressed")
+        button(function="menu", state="normal", draw_ops="menu_button_normal")
+        button(function="menu", state="pressed", draw_ops="menu_button_pressed")
+
+    frame_style(name="normal-maximized-focused", geometry="maximized")
+        piece(position="titlebar", draw_ops="title-bar-max")
+        piece(position="left_edge", draw_ops="frame-left-focused")
+        piece(position="right_edge", draw_ops="frame-right-focused")
+        piece(position="bottom_edge", draw_ops="frame-bottom-focused")
+        piece(position="title", draw_ops="title-text-focused")
+        button(function="close", state="normal", draw_ops="button-max-close-focused")
+        button(function="close", state="prelight", draw_ops="button-max-close-hover")
+        button(function="close", state="pressed", draw_ops="button-max-close-pressed")
+        button(function="minimize", state="normal", draw_ops="button-max-minimize-focused")
+        button(function="minimize", state="prelight", draw_ops="button-max-minimize-focused-hover")
+        button(function="minimize", state="pressed", draw_ops="button-max-minimize-focused-pressed")
+        button(function="maximize", state="normal", draw_ops="button-restore-focused")
+        button(function="maximize", state="prelight", draw_ops="button-restore-focused-hover")
+        button(function="maximize", state="pressed", draw_ops="button-restore-focused-pressed")
+        button(function="menu", state="normal", draw_ops="menu_button_normal")
+        button(function="menu", state="pressed", draw_ops="menu_button_pressed")
+
+    frame_style(name="normal-maximized-unfocused", geometry="maximized")
+        piece(position="titlebar", draw_ops="title-bar-max-unfocused")
+        piece(position="left_edge", draw_ops="frame-left-unfocused")
+        piece(position="right_edge", draw_ops="frame-right-unfocused")
+        piece(position="bottom_edge", draw_ops="frame-bottom-unfocused")
+        piece(position="title", draw_ops="title-text-unfocused")
+        button(function="close", state="normal", draw_ops="button-max-close-unfocused")
+        button(function="close", state="prelight", draw_ops="button-max-close-hover")
+        button(function="close", state="pressed", draw_ops="button-max-close-pressed")
+        button(function="minimize", state="normal", draw_ops="button-max-minimize-unfocused")
+        button(function="minimize", state="prelight", draw_ops="button-max-minimize-unfocused-hover")
+        button(function="minimize", state="pressed", draw_ops="button-max-minimize-unfocused-pressed")
+        button(function="maximize", state="normal", draw_ops="button-restore-unfocused")
+        button(function="maximize", state="prelight", draw_ops="button-restore-unfocused-hover")
+        button(function="maximize", state="pressed", draw_ops="button-restore-unfocused-pressed")
+        button(function="menu", state="normal", draw_ops="menu_button_normal")
+        button(function="menu", state="pressed", draw_ops="menu_button_pressed")
+
+    frame_style(name="normal-shaded-focused", geometry="normal", parent="normal-focused")
+        piece(position="titlebar", draw_ops="title-bar")
+
+    frame_style(name="normal-shaded-unfocused", geometry="normal", parent="normal-unfocused")
+        piece(position="titlebar", draw_ops="title-bar")
+
+    // END FRAME STYLES
+    
+    // BEGIN FRAME STYLE SETS
+
+    frame_style_set(name="normal")
+        frame(focus="yes", state="normal", resize="both", style="normal-focused")
+        frame(focus="no", state="normal", resize="both", style="normal-unfocused")
+        frame(focus="yes", state="maximized", style="normal-maximized-focused")
+        frame(focus="no", state="maximized", style="normal-maximized-unfocused")
+        frame(focus="yes", state="shaded", style="normal-shaded-focused")
+        frame(focus="no", state="shaded", style="normal-shaded-unfocused")
+        frame(focus="yes", state="maximized_and_shaded", style="normal-shaded-focused")
+        frame(focus="no", state="maximized_and_shaded", style="normal-shaded-unfocused")
+
+    // END FRAME STYLE SETS
+
+    // BEGIN WINDOW
+
+    window(type="normal", style_set="normal")
+    window(type="dialog", style_set="normal")
+    window(type="modal_dialog", style_set="normal")
+    window(type="menu", style_set="normal")
+    window(type="utility", style_set="normal")
+    window(type="border", style_set="normal")
