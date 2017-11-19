@@ -6,8 +6,6 @@
   "license": "MIT",
   "private": false,
   "dependencies": {
-    "pug-cli": "^1.0.0-alpha6",
-    "xml2jade2": "^0.0.2",
     "xmlpug": "^3.0.0"
   }
 }
