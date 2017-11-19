@@ -11,7 +11,9 @@ Currently includes the "Steel Blue" accent colour theme from Windows 10 for wind
 
 ## Installing
 
-To build the metacity .xml file from the templating source file which uses Pug, you will 
+Releases can be found in the [release section](https://github.com/kvnxiao/aeroten-theme/releases) online.
+
+To manually build and install the metacity .xml file from the templating source file which uses Pug, you will 
 need `yarn` and `make` installed.
 
 1. Clone the repository to your drive
