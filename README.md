@@ -9,7 +9,8 @@ Currently includes the "Steel Blue" accent colour theme from Windows 10 for wind
 
 ## Installing
 
-To build the metacity .xml file from the templating source file which uses Pug, you will need `yarn` installed.
+To build the metacity .xml file from the templating source file which uses Pug, you will 
+need `yarn` and `make` installed.
 
 1. Clone the repository to your drive
 2. Run `make dep` to install the node modules
