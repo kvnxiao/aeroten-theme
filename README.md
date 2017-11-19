@@ -1,7 +1,9 @@
 # Aeroten Theme for Linux
 A pixel-perfect copy of Windows 10's flat Metro / Fluent Design theme for Linux.
 
-![preview image](https://raw.githubusercontent.com/kvnxiao/aeroten-theme/master/preview/preview.png)
+<p align="center">
+  <img src="https://raw.githubusercontent.com/kvnxiao/aeroten-theme/master/preview/preview.png">
+</p>
 
 ## Overview
 
