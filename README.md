@@ -1,4 +1,4 @@
-# Aeroten
+# Aeroten Theme for Linux
 A pixel-perfect copy of Windows 10's flat Metro / Fluent Design theme for Linux.
 
 ![preview image](https://raw.githubusercontent.com/kvnxiao/aeroten-theme/master/preview/preview.png)
@@ -6,6 +6,16 @@ A pixel-perfect copy of Windows 10's flat Metro / Fluent Design theme for Linux.
 ## Overview
 
 Currently includes the "Steel Blue" accent colour theme from Windows 10 for window borders and buttons.
+
+## Installing
+
+To build the metacity .xml file from the templating source file which uses Pug, you will need `yarn` installed.
+
+1. Clone the repository to your drive
+2. Run `make dep` to install the node modules
+3. Run `make install` to install the theme
+
+And to uninstall, simply run `make uninstall` to uninstall the theme
 
 ## Roadmap
 
