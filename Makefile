@@ -1,32 +1,35 @@
-.DEFAULT_GOAL := cleanbuild
-
 FILE_NAME=metacity-theme-1
 SRC_PUG_FOLDER=src/xml
 SRC_IMG_FOLDER=src/images/.
-BUILD_DIR=./metacity-1
+BUILD_DIR=./build/Aeroten
+METACITY_BUILD_DIR=$(BUILD_DIR)/metacity-1
+THEMES_FOLDER=$(HOME)/.themes
 
-
-cleanbuild: clean build
-
-install:
-	yarn install
-
-build: images
-	@[[ -d ${BUILD_DIR} ]] || mkdir ${BUILD_DIR}
-	@./node_modules/xmlpug/bin/xmlpug ${SRC_PUG_FOLDER}/${FILE_NAME}.pug -o ${BUILD_DIR}/${FILE_NAME}.xml
-	@sed -i 's/;//g' ${BUILD_DIR}/${FILE_NAME}.xml
-	@echo 'Outputted MINIFIED .xml from pug source'
+build: clean images
+	@./node_modules/xmlpug/bin/xmlpug $(SRC_PUG_FOLDER)/$(FILE_NAME).pug -o $(METACITY_BUILD_DIR)/$(FILE_NAME).xml
+	@sed -i 's/;//g' $(METACITY_BUILD_DIR)/$(FILE_NAME).xml
+	@echo 'Outputted MINIFIED .xml from Pug source to $(METACITY_BUILD_DIR)/$(FILE_NAME).xml'
 
 clean:
-	@([[ -d ${BUILD_DIR} ]] && rm -r ${BUILD_DIR} && echo 'Cleaned ${BUILD_DIR} folder') || echo 'Skipping clean as the build directory ${BUILD_DIR} does not exist.'
+	@([[ -d ./build ]] && rm -r ./build && echo 'Cleaned ./build folder') || echo 'Skipping clean as the directory ./build does not exist.'
 
-dev: images
-	@[[ -d ${BUILD_DIR} ]] || mkdir ${BUILD_DIR}
-	@./node_modules/xmlpug/bin/xmlpug ${SRC_PUG_FOLDER}/${FILE_NAME}.pug -o ${BUILD_DIR}/${FILE_NAME}.xml -p
-	@sed -i 's/;//g' ${BUILD_DIR}/${FILE_NAME}.xml
-	@echo 'Outputted DEV (pretty-printed) .xml from pug source'
+dev: clean images
+	@./node_modules/xmlpug/bin/xmlpug $(SRC_PUG_FOLDER)/$(FILE_NAME).pug -o $(METACITY_BUILD_DIR)/$(FILE_NAME).xml -p
+	@sed -i 's/;//g' $(METACITY_BUILD_DIR)/$(FILE_NAME).xml
+	@echo 'Outputted DEV (pretty-printed) .xml from Pug source to $(METACITY_BUILD_DIR)/$(FILE_NAME).xml'
 
 images:
-	@[[ -d ${BUILD_DIR} ]] || mkdir ${BUILD_DIR}
-	@cp -r ${SRC_IMG_FOLDER} ${BUILD_DIR}
-	@echo 'Copying images to ${BUILD_DIR}'
+	@mkdir -p $(METACITY_BUILD_DIR)
+	@cp -r $(SRC_IMG_FOLDER) $(METACITY_BUILD_DIR)
+	@echo 'Copying metacity images to $(METACITY_BUILD_DIR)'
+
+dep:
+	yarn install
+
+install: build
+	@([[ -d $(THEMES_FOLDER) ]] && echo 'Found user themes folder at $(THEMES_FOLDER)') || (mkdir -p $(THEMES_FOLDER) && echo "User themes folder doesn't exist. Creating one at $(THEMES_FOLDER)")
+	@cp -rf $(BUILD_DIR) $(THEMES_FOLDER) && echo 'Copied built theme to $(THEMES_FOLDER)'
+
+uninstall:
+	@echo 'Deleting $(THEMES_FOLDER)/Aeroten'
+	@rm -r $(THEMES_FOLDER)/Aeroten
