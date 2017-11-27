@@ -63,10 +63,16 @@ metacity_theme
     // BEGIN DRAWOPS
 
     draw_ops(name="title-text-focused")
-        title(color="TITLE_TEXT_FOCUSED", x="(0 `max` ((width + 90 - title_width) / 2)) + 2", y="(0 `max` ((height - title_height) / 2))")
+        title(color="TITLE_TEXT_FOCUSED", x="(0 `max` ((width - title_width + 45 * 2) / 2)) + 2", y="(0 `max` ((height - title_height) / 2))")
 
     draw_ops(name="title-text-unfocused")
-        title(color="TITLE_TEXT_UNFOCUSED", x="(0 `max` ((width + 90 - title_width) / 2)) + 2", y="(0 `max` ((height - title_height) / 2))")
+        title(color="TITLE_TEXT_UNFOCUSED", x="(0 `max` ((width - title_width + 45 * 2) / 2)) + 2", y="(0 `max` ((height - title_height) / 2))")
+
+    draw_ops(name="title-text-focused-single")
+        title(color="TITLE_TEXT_FOCUSED", x="(0 `max` ((width - title_width) / 2)) + 2", y="(0 `max` ((height - title_height) / 2))")
+
+    draw_ops(name="title-text-unfocused-single")
+        title(color="TITLE_TEXT_UNFOCUSED", x="(0 `max` ((width - title_width) / 2)) + 2", y="(0 `max` ((height - title_height) / 2))")
 
     draw_ops(name="title-bar")
         rectangle(color="ACCENT_FOCUSED_BG", x="0", y="0", width="width", height="height", filled="true")
@@ -226,6 +232,9 @@ metacity_theme
         button(function="maximize", state="pressed", draw_ops="button-maximize-focused-pressed")
         button(function="menu", state="normal", draw_ops="menu_button_normal")
         button(function="menu", state="pressed", draw_ops="menu_button_pressed")
+    
+    frame_style(name="dialog-focused", parent="normal-focused", geometry="normal")
+        piece(position="title", draw_ops="title-text-focused-single")
 
     frame_style(name="normal-unfocused", geometry="normal")
         piece(position="titlebar", draw_ops="title-bar-unfocused")
@@ -244,6 +253,9 @@ metacity_theme
         button(function="maximize", state="pressed", draw_ops="button-maximize-unfocused-pressed")
         button(function="menu", state="normal", draw_ops="menu_button_normal")
         button(function="menu", state="pressed", draw_ops="menu_button_pressed")
+    
+    frame_style(name="dialog-unfocused", parent="normal-unfocused", geometry="normal")
+        piece(position="title", draw_ops="title-text-unfocused-single")
 
     frame_style(name="normal-maximized-focused", geometry="maximized")
         piece(position="titlebar", draw_ops="title-bar-max")
@@ -263,6 +275,9 @@ metacity_theme
         button(function="menu", state="normal", draw_ops="menu_button_normal")
         button(function="menu", state="pressed", draw_ops="menu_button_pressed")
 
+    frame_style(name="dialog-maximized-focused", parent="normal-maximized-focused", geometry="maximized")
+        piece(position="title", draw_ops="title-text-focused-single")
+
     frame_style(name="normal-maximized-unfocused", geometry="maximized")
         piece(position="titlebar", draw_ops="title-bar-max-unfocused")
         piece(position="left_edge", draw_ops="frame-left-unfocused")
@@ -280,12 +295,21 @@ metacity_theme
         button(function="maximize", state="pressed", draw_ops="button-restore-unfocused-pressed")
         button(function="menu", state="normal", draw_ops="menu_button_normal")
         button(function="menu", state="pressed", draw_ops="menu_button_pressed")
+    
+    frame_style(name="dialog-maximized-unfocused", parent="normal-maximized-unfocused", geometry="maximized")
+        piece(position="title", draw_ops="title-text-unfocused-single")
 
     frame_style(name="normal-shaded-focused", geometry="normal", parent="normal-focused")
         piece(position="titlebar", draw_ops="title-bar")
 
     frame_style(name="normal-shaded-unfocused", geometry="normal", parent="normal-unfocused")
         piece(position="titlebar", draw_ops="title-bar")
+    
+    frame_style(name="dialog-shaded-focused", geometry="normal", parent="normal-shaded-focused")
+        piece(position="title", draw_ops="title-text-focused-single")
+
+    frame_style(name="dialog-shaded-unfocused", geometry="normal", parent="normal-shaded-unfocused")
+        piece(position="title", draw_ops="title-text-unfocused-single")
 
     // END FRAME STYLES
     
@@ -301,12 +325,22 @@ metacity_theme
         frame(focus="yes", state="maximized_and_shaded", style="normal-shaded-focused")
         frame(focus="no", state="maximized_and_shaded", style="normal-shaded-unfocused")
 
+    frame_style_set(name="dialog")
+        frame(focus="yes", state="normal", resize="both", style="dialog-focused")
+        frame(focus="no", state="normal", resize="both", style="dialog-focused")
+        frame(focus="yes", state="maximized", style="dialog-maximized-focused")
+        frame(focus="no", state="maximized", style="dialog-maximized-unfocused")
+        frame(focus="yes", state="shaded", style="dialog-shaded-focused")
+        frame(focus="no", state="shaded", style="dialog-shaded-unfocused")
+        frame(focus="yes", state="maximized_and_shaded", style="dialog-shaded-focused")
+        frame(focus="no", state="maximized_and_shaded", style="dialog-shaded-unfocused")
+
     // END FRAME STYLE SETS
 
     // BEGIN WINDOW
 
     window(type="normal", style_set="normal")
-    window(type="dialog", style_set="normal")
+    window(type="dialog", style_set="dialog")
     window(type="modal_dialog", style_set="normal")
     window(type="menu", style_set="normal")
     window(type="utility", style_set="normal")
