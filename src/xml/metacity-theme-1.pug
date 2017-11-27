@@ -34,7 +34,7 @@ metacity_theme
 
     // BEGIN FRAME GEOMETRY
 
-    frame_geometry(name="normal", rounded_top_left="false", title_scale="medium")
+    frame_geometry(name="normal", rounded_top_left="false", title_scale="small")
         distance(name="left_width", value="1")
         distance(name="right_width", value="1")
         distance(name="bottom_height", value="1")
@@ -46,7 +46,7 @@ metacity_theme
         border(name="title_border", left="0", right="0", top="0", bottom="0")
         border(name="button_border", left="1", right="0", top="1", bottom="1")
 
-    frame_geometry(name="maximized", rounded_top_left="false", title_scale="medium")
+    frame_geometry(name="maximized", rounded_top_left="false", title_scale="small")
         distance(name="left_width", value="0")
         distance(name="right_width", value="0")
         distance(name="bottom_height", value="0")
@@ -63,10 +63,10 @@ metacity_theme
     // BEGIN DRAWOPS
 
     draw_ops(name="title-text-focused")
-        title(color="TITLE_TEXT_FOCUSED", x="(0 `max` ((width - title_width) / 2)) + 2", y="(0 `max` ((height - title_height) / 2))")
+        title(color="TITLE_TEXT_FOCUSED", x="(0 `max` ((width + 90 - title_width) / 2)) + 2", y="(0 `max` ((height - title_height) / 2))")
 
     draw_ops(name="title-text-unfocused")
-        title(color="TITLE_TEXT_UNFOCUSED", x="(0 `max` ((width - title_width) / 2)) + 2", y="(0 `max` ((height - title_height) / 2))")
+        title(color="TITLE_TEXT_UNFOCUSED", x="(0 `max` ((width + 90 - title_width) / 2)) + 2", y="(0 `max` ((height - title_height) / 2))")
 
     draw_ops(name="title-bar")
         rectangle(color="ACCENT_FOCUSED_BG", x="0", y="0", width="width", height="height", filled="true")
