@@ -6,6 +6,12 @@
   "license": "MIT",
   "private": false,
   "dependencies": {
-    "xmlpug": "^3.0.0"
-  }
+    "xmlpug": "^3.0.0",
+    "snyk": "^1.116.2"
+  },
+  "scripts": {
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
+  },
+  "snyk": true
 }
